@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://objects/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game.gd" type="Script" id=3]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Asteroid" parent="." instance=ExtResource( 1 )]
+position = Vector2( 687.614, 198.474 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 673.109, 630.708 )
