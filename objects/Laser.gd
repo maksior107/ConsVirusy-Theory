@@ -9,3 +9,12 @@ func _process(delta):
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	queue_free()
+
+
+func _on_Laser_body_shape_entered(body_id, body, body_shape, area_shape):
+	if (body.is_in_group("asteroids")):
+		print("asteroid hit")
+		body.call_deferred("explode")
+		get_parent().remove_child(self)
+		queue_free()
+	
