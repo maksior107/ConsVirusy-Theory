@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 const SPEED := 600
 
 # Called when the node enters the scene tree for the first time.
@@ -13,10 +10,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = -SPEED
 	if(Input.is_action_pressed("ui_right")):
 		velocity.x = SPEED
-	if (Input.is_action_pressed("ui_up")):
-		velocity.y = -SPEED
-	if (Input.is_action_pressed("ui_down")):
-		velocity.y = SPEED
 		
 	move_and_collide(velocity * delta)
 	 # Replace with function body.
@@ -25,7 +18,6 @@ func _unhandled_key_input(event) -> void:
 	if (event.is_action_pressed("shoot")):
 		$LaserWeapon.shoot()
 		
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Hitbox_body_entered(body):
+	if (!self.is_queued_for_deletion() && body.is_in_group("asteroids")):
+		queue_free()
