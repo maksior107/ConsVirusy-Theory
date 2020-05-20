@@ -21,7 +21,11 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(velocity * delta)
 	 # Replace with function body.
 
-
+func _unhandled_key_input(event) -> void:
+	if (event.is_action_pressed("shoot")):
+		$LaserWeapon.shoot()
+		
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
