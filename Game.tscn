@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://entities/AsteroidSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://entities/MainCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/UbuntuMono-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UI/Score.gd" type="Script" id=7]
+[ext_resource path="res://assets/audio/music/sawsquarenoise_-_03_-_Towel_Defence_Ingame.ogg" type="AudioStream" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -29,6 +30,14 @@ shader_param/speed_scale = 0.5
 size = 32
 font_data = ExtResource( 6 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 200
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 42
+font_data = ExtResource( 6 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -41,7 +50,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1300, 740 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 676.625, 683.451 )
+position = Vector2( 625, 680 )
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 1 )]
 
@@ -84,3 +93,38 @@ custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 2
 script = ExtResource( 7 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -10.0
+autoplay = true
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+margin_left = 207.105
+margin_top = 254.267
+margin_right = 1107.1
+margin_bottom = 454.267
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Game Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartLabel" type="Label" parent="GameOverLabel"]
+margin_left = 136.0
+margin_top = 394.0
+margin_right = 758.0
+margin_bottom = 437.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Press 'SPACE' to restart"
+align = 1
+valign = 1
+
+[node name="GameOverTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
