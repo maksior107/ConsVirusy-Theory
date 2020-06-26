@@ -1,16 +1,15 @@
 extends KinematicBody2D
 
-
 const SPEED := 600
 
 signal player_died
-signal laser_shoot
+signal wave_shoot
 
 var player_explosion_scene = load("res://objects/ParticlesPlayerExplosion.tscn")
 
 func _ready():
 	var camera = get_parent().get_node("MainCamera")
-	self.connect("laser_shoot", camera, "_on_Player_laser_shoot")
+	self.connect("wave_shoot", camera, "_on_Player_wave_shoot")
 	
 	var game = get_parent()
 	self.connect("player_died", game, "_on_Player_player_died")
@@ -28,11 +27,11 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_key_input(event) -> void:
 	if (event.is_action_pressed("shoot")):
-		$LaserWeapon.shoot()
-		emit_signal("laser_shoot")
+		$WaveWeapon.shoot()
+		emit_signal("wave_shoot")
 		
 func _on_Hitbox_body_entered(body):
-	if (!self.is_queued_for_deletion() && body.is_in_group("asteroids")):
+	if (!self.is_queued_for_deletion() && body.is_in_group("viruses")):
 		explode()
 		
 func explode():

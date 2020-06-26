@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NanobotExplosion.wav-175477ce5c2f5dae0aee113265eec2ea.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/NanobotExplosion.wav"
+dest_files=[ "res://.import/NanobotExplosion.wav-175477ce5c2f5dae0aee113265eec2ea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

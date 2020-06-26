@@ -2,24 +2,50 @@ extends Node2D
 
 var player_scene = load("res://characters/Player.tscn")
 
-var is_game_over := false
+var intro_passed := false
+var game_started := false
+var game_over := false
 
 func _ready() -> void:
+	freeze_game()
 	connect("resized", self, "call_wrap_around")
+	
+func freeze_game():
+	$VirusSpawner/SpawnTimer.stop()
+	$Player.visible = false
+	
 
 func call_wrap_around():
 	get_tree().call_group("wrap_around", "recalculate_wrap_area")
 
-
+func _unhandled_input(event):
+	if(game_over and event.is_action_released("restart_game")):
+		_restart_game()
+	elif(!intro_passed and event.is_action_released("ui_accept")):
+		_show_intro()
+	elif(!game_started and event.is_action_released("ui_accept")):
+		_start_game()
+		
+func _show_intro():
+	intro_passed = true
+	$ThemeScreen.visible = false
+	$IntroScreen.visible = true
+		
+func _start_game():
+	game_started = true
+	$IntroScreen.visible = false
+	$Player.visible = true
+	$VirusSpawner.restart()
+	
 func _on_Player_player_died():
 	$MusicPlayer.stop()
 	$MusicPlayer.stream = load("res://assets/audio/music/sawsquarenoise_-_06_-_Towel_Defence_Jingle_Loose.ogg")
 	$MusicPlayer.stream.loop = false
 	$MusicPlayer.volume_db = -5
 	
-	$AsteroidSpawner/SpawnTimer.stop()
+	$VirusSpawner/SpawnTimer.stop()
 	
-	for a in get_tree().get_nodes_in_group("asteroids"):
+	for a in get_tree().get_nodes_in_group("viruses"):
 		if(!a.is_queued_for_deletion() and a.has_node("AudioStreamPlayer2D")):
 			a.get_node("AudioStreamPlayer2D").stop()
 	
@@ -28,18 +54,14 @@ func _on_Player_player_died():
 func _on_GameOverTimer_timeout():
 	$MusicPlayer.play(0)
 	$GameOverLabel.visible = true
-	is_game_over = true
-
-func _unhandled_input(event):
-	if(is_game_over and event.is_action_released("restart_game")):
-		_restart_game()
+	game_over = true
 		
 func _restart_game():
 	_undo_game_over()
 	_respawn_player()
-	$AsteroidSpawner.restart()
+	$VirusSpawner.restart()
 	$GUI/MarginContainer/HBoxContainer/VBoxContainer/Score.reset()
-	is_game_over = false
+	game_over = false
 
 func _undo_game_over():
 	$GameOverLabel.visible = false

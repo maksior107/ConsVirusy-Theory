@@ -1,8 +1,6 @@
 extends Camera2D
 
-
-
-func _on_Player_laser_shoot():
+func _on_Player_wave_shoot():
 	$Screenshake.start(0.1, 15, 4, 0)
 
 func asteroid_exploded():

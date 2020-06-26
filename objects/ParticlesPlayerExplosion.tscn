@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/audio/sfx/ShipExplosion.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/sfx/NanobotExplosion.wav" type="AudioStream" id=1]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.15, 0.4, 0.8, 1 )
-colors = PoolColorArray( 0.988235, 0.992157, 0.796078, 1, 0.654902, 0.643137, 0.223529, 1, 0.584314, 0.384314, 0.109804, 1, 0.729412, 0.309804, 0.129412, 1, 1, 0.156863, 0, 1 )
+offsets = PoolRealArray( 0, 0.15, 0.407407, 0.8, 1 )
+colors = PoolColorArray( 0.988235, 0.992157, 0.796078, 1, 0.540319, 0.654902, 0.223529, 1, 0.109804, 0.584314, 0.272917, 1, 0.742508, 0.851562, 0.217065, 1, 0.32549, 0.0156863, 0.0235294, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -28,11 +28,11 @@ curve = SubResource( 5 )
 emission_shape = 1
 emission_sphere_radius = 2.0
 flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 100.0
 initial_velocity_random = 0.5
+angular_velocity = 13.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 100.0

@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://entities/AsteroidSpawner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Game.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/backgrounds/darkPurple.png" type="Texture" id=4]
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/background/background.png" type="Texture" id=2]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/VirusSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/MainCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/UbuntuMono-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UI/Score.gd" type="Script" id=7]
 [ext_resource path="res://assets/audio/music/sawsquarenoise_-_03_-_Towel_Defence_Ingame.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/images/intro/theme.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/intro/intro.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -31,28 +33,28 @@ size = 32
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 200
+size = 28
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 42
+size = 200
 font_data = ExtResource( 6 )
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
 material = SubResource( 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -10, -10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1300, 740 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 625, 680 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 625.169, 679.831 )
 
-[node name="AsteroidSpawner" parent="." instance=ExtResource( 1 )]
+[node name="VirusSpawner" parent="." instance=ExtResource( 4 )]
 
 [node name="MainCamera" parent="." instance=ExtResource( 5 )]
 current = true
@@ -99,13 +101,69 @@ stream = ExtResource( 8 )
 volume_db = -10.0
 autoplay = true
 
+[node name="ThemeScreen" type="Control" parent="."]
+
+[node name="theme" type="Sprite" parent="ThemeScreen"]
+position = Vector2( 603.262, 357.87 )
+texture = ExtResource( 9 )
+
+[node name="StartLabel" type="Label" parent="ThemeScreen"]
+margin_left = 343.105
+margin_top = 648.267
+margin_right = 965.105
+margin_bottom = 691.267
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.734375, 0.167394, 0.167394, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Press 'ENTER' to start"
+align = 1
+valign = 1
+
+[node name="IntroScreen" type="Control" parent="."]
+visible = false
+
+[node name="intro" type="Sprite" parent="IntroScreen"]
+position = Vector2( 163.477, 318.227 )
+texture = ExtResource( 10 )
+
+[node name="StartLabel" type="Label" parent="IntroScreen"]
+margin_left = 269.022
+margin_top = 138.228
+margin_right = 1156.02
+margin_bottom = 551.228
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Everyone knows that CoronaVirus is caused by 5G EM waves... Thank God the real, independent scientists invented nanobots to fight the virus from the inside of the body, by emitting anti-5G EM waves.
+
+You are about to pilot the very first, experimental nanobot through the patient's blood system to fight the virus. 
+
+Shoot it's cells with anti-5G waves and watch out for RNA fragments. Avoid touching both cells and helixes as they might harm the nanobot. 
+
+Smash as many as you can using the waves. Godspeed!"
+valign = 1
+autowrap = true
+
+[node name="IntroLabel" type="Label" parent="IntroScreen"]
+margin_left = 343.105
+margin_top = 648.267
+margin_right = 965.105
+margin_bottom = 691.267
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.734375, 0.167394, 0.167394, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Press 'ENTER' to start"
+align = 1
+valign = 1
+
 [node name="GameOverLabel" type="Label" parent="."]
 visible = false
+modulate = Color( 0.701961, 0.141176, 0.141176, 1 )
 margin_left = 207.105
 margin_top = 254.267
 margin_right = 1107.1
 margin_bottom = 454.267
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Game Over"
 align = 1
@@ -119,7 +177,7 @@ margin_left = 136.0
 margin_top = 394.0
 margin_right = 758.0
 margin_bottom = 437.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Press 'SPACE' to restart"
 align = 1
@@ -127,4 +185,6 @@ valign = 1
 
 [node name="GameOverTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="."]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
