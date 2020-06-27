@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rna.png-15d5dbc53cb2503a1f355d917750edda.stex"
+path="res://.import/theme.png-0e83d06de94b77d4a2b67ef78e543efe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/virus/rna.png"
-dest_files=[ "res://.import/rna.png-15d5dbc53cb2503a1f355d917750edda.stex" ]
+source_file="res://assets/images/theme.png"
+dest_files=[ "res://.import/theme.png-0e83d06de94b77d4a2b67ef78e543efe.stex" ]
 
 [params]
 

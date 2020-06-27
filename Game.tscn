@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/background/background.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/background.png" type="Texture" id=2]
 [ext_resource path="res://characters/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/VirusSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/MainCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/UbuntuMono-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UI/Score.gd" type="Script" id=7]
 [ext_resource path="res://assets/audio/music/sawsquarenoise_-_03_-_Towel_Defence_Ingame.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/images/intro/theme.png" type="Texture" id=9]
-[ext_resource path="res://assets/images/intro/intro.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/theme.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/intro.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -109,9 +109,9 @@ texture = ExtResource( 9 )
 
 [node name="StartLabel" type="Label" parent="ThemeScreen"]
 margin_left = 343.105
-margin_top = 648.267
+margin_top = 648.379
 margin_right = 965.105
-margin_bottom = 691.267
+margin_bottom = 691.379
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.734375, 0.167394, 0.167394, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

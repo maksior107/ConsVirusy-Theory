@@ -7,7 +7,6 @@ var difficulty_index := 1.5
 
 func _spawn_virus():
 	var virus = virus_scene.instance()
-	
 	_set_virus_position(virus)
 	_set_virus_trajectory(virus)
 	

@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 func freeze_game():
 	$VirusSpawner/SpawnTimer.stop()
+	$GUI/MarginContainer/HBoxContainer/VBoxContainer/Score.visible = false
 	$Player.visible = false
 	
 
@@ -35,6 +36,7 @@ func _start_game():
 	game_started = true
 	$IntroScreen.visible = false
 	$Player.visible = true
+	$GUI/MarginContainer/HBoxContainer/VBoxContainer/Score.visible = true
 	$VirusSpawner.restart()
 	
 func _on_Player_player_died():
